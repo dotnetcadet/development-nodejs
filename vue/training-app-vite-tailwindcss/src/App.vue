@@ -1,17 +1,38 @@
 <template>
   <div>
-    <h1 class="text-3xl font-bold">{{ environment }}</h1>
+    <Toggle :onEnabled="onEnable" :onDisabled="onDisable" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import Toggle from './components'
 
 export default defineComponent({
-  setup() {},
-  data() {
+  setup() {
+    const reset = () =>{
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    }
+    const onEnable = () => {
+      reset()
+
+      localStorage.theme = 'dark'
+    }
+    const onDisable = () => {
+      reset()
+
+      localStorage.theme = 'light'
+    }
     return {
-      environment: import.meta.env.VITE_APP_TITLE,
-    };
+      onEnable,
+      onDisable
+    }
   },
+  components: {
+    Toggle
+  }
 });
 </script>

@@ -9,9 +9,6 @@ import { defineComponent } from 'vue'
 
 
 export default defineComponent({
-  setup() {
-
-  },
   data() {
     return {
       environment: import.meta.env.VITE_APP_TITLE
@@ -27,9 +24,11 @@ export default defineComponent({
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
